@@ -4,6 +4,7 @@ Không dán ảnh, toạ độ điểm hay nội dung file export vào đây.
 
 Họ tên / mã học viên: Nguyễn Minh Đức / 2A202602114
 Object J01 (a/b/c/d theo docs/cases.md) / track ID trong task J01: J01-a / track ID 0
+Phạm vi gán nhãn: Chỉ gán nhãn duy nhất 1 phương tiện là xe con J01-a (xe chạy làn bên phải tại frame neo 23, ROI [1531, 839, 1896, 1041] trên camera trước image_1). Không gán nhãn toàn bộ phương tiện.
 Phiên bản CVAT / overlay đã bật (có/không): 2.74.1 / có
 
 J01 — TRACK LÕI
