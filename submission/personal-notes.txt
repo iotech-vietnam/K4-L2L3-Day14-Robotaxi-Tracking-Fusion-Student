@@ -2,34 +2,37 @@ PHIẾU CÁ NHÂN — DAY 14
 Điền file này, chạy QC vào submission/qc-j01 và submission/qc-practice, commit rồi nộp link repo.
 Không dán ảnh, toạ độ điểm hay nội dung file export vào đây.
 
-Họ tên / mã học viên:
-Object J01 (a/b/c/d theo docs/cases.md) / track ID trong task J01:
-Phiên bản CVAT / overlay đã bật (có/không):
+Họ tên / mã học viên: Nguyễn Minh Đức / 2A202602114
+Object J01 (a/b/c/d theo docs/cases.md) / track ID trong task J01: J01-a / track ID 0
+Phiên bản CVAT / overlay đã bật (có/không): 2.74.1 / có
 
 J01 — TRACK LÕI
-Frame fit và lý do:
-L / W / H (m):
-Keyframe quan trọng và lý do:
-Đã bấm F qua đủ frame 0–65 (có/không):
-Đoạn thưa / che khuất / dễ nhầm identity:
+Frame fit và lý do: Frame 23 — frame neo có mật độ điểm LiDAR dày, rõ ranh giới các cạnh và nóc xe, quan sát đối chiếu rõ ràng trên camera trước image_1.
+L / W / H (m): 4.24 / 2.10 / 1.73
+Keyframe quan trọng và lý do: Frame 3 (bắt đầu vào tầm nhìn LiDAR), Frame 23 (frame neo, cự ly gần nhất, điểm dày nhất để chốt kích thước), Frame 35-40 (xe đổi hướng/làn nhẹ), Frame 57 (xe ra xa khỏi tầm nhìn, bật outside kết thúc track).
+Đã bấm F qua đủ frame 0–65 (có/không): có
+Đoạn thưa / che khuất / dễ nhầm identity: Đoạn frame 3–10 xe ở xa (~45m), điểm LiDAR thưa; đoạn frame 50–57 xe xa dần về phía trước nhưng vẫn giữ vững identity nhờ chuyển động liên tục và đối chiếu overlay camera trước.
 
 SELF-QC (từ qc_tracks.csv / qc_flags.csv)
-Lần QC đầu — cờ của track J01 (loại, frame):
+Lần QC đầu — cờ của track J01 (loại, frame): fragmentation_suspect (frame 3, frame 57); no_interpolation (frame 3).
 Quyết định cho từng cờ (sửa / giữ vì hợp lệ / chưa đủ evidence) và lý do:
-Đã sửa gì sau QC đầu; QC cuối còn cờ nào:
-Nhận xét của bạn cùng cặp và bạn đồng ý/không đồng ý vì sao:
+- fragmentation_suspect (frame 3): Giữ vì hợp lệ. Xe bắt đầu đi vào tầm nhìn cảm biến ở cự ly 46m (Enter hợp lệ).
+- fragmentation_suspect (frame 57): Giữ vì hợp lệ. Xe đi ra khỏi phạm vi theo dõi ở cự ly 38m, bật outside kết thúc track (Exit hợp lệ).
+- no_interpolation (frame 3): Giữ vì hợp lệ. 55/55 frame lưu keyframe do quá trình căn chỉnh vị trí từng frame, nhưng kích thước giữ cố định tuyệt đối (L_drift = 0.0%, W_drift = 3.2%, H_drift = 0.0%) và chuyển động mượt mà (max yaw step 4.01 deg, max pos step 1.73m).
+Đã sửa gì sau QC đầu; QC cuối còn cờ nào: Đã đối chiếu lại trên CVAT xác nhận tính liên tục; các cờ đều là trường hợp biên hợp lệ nên giữ nguyên. QC cuối còn 3 cờ giải trình như trên.
+Nhận xét của bạn cùng cặp và bạn đồng ý/không đồng ý vì sao: Bạn cùng cặp nhận xét track ôm khít xe, heading chuẩn theo hướng di chuyển, kích thước đồng nhất không bị co giãn khi xe ở xa; đồng ý với nhận xét.
 
 CAMERA–LIDAR (overlay trên image_1)
-Ca bình thường (frame / quan sát):
-Ca khó (frame / quan sát 2D / quan sát 3D):
-Giả thuyết nguyên nhân (annotation / FOV / occlusion / sparse / nghi calibration / chưa đủ evidence):
-Hành động (sửa / giữ / báo Lab Coach) và lý do:
+Ca bình thường (frame / quan sát): Frame 23: Xe ở cự ly gần (~10m), cụm điểm 3D rất rõ nét, khung viền chiếu overlay màu xanh trên image_1 ôm khít thân xe, mui xe và bánh xe.
+Ca khó (frame / quan sát 2D / quan sát 3D): Frame 50: Trên ảnh 2D camera trước xe khá nhỏ do ở xa; cụm điểm LiDAR 3D rất thưa thớt.
+Giả thuyết nguyên nhân (annotation / FOV / occlusion / sparse / nghi calibration / chưa đủ evidence): sparse (mật độ tia LiDAR giảm theo khoảng cách Z) và hiệu ứng phối cảnh chia cho Z trên ảnh camera.
+Hành động (sửa / giữ / báo Lab Coach) và lý do: Giữ nguyên kích thước L/W/H tham chiếu đã xác lập ở frame 23, chỉ dịch chuyển tâm theo vết điểm còn lại; không co nhỏ box theo số điểm thưa.
 
 CASE NGẮN (task practice)
-Case → track ID (ví dụ B01 → 3):
-Case đã xong:
-Case đang dở / chỗ kẹt:
-fragmentation_suspect ở đầu/cuối case đã kiểm là do cách cắt case (có/không):
+Case → track ID (ví dụ B01 → 3): B01 → track ID 0
+Case đã xong: B01
+Case đang dở / chỗ kẹt: không có
+fragmentation_suspect ở đầu/cuối case đã kiểm là do cách cắt case (có/không): có
 
 THỜI GIAN
-J01 / case ngắn / QC và fusion:
+J01 / case ngắn / QC và fusion: 90 phút / 20 phút / 20 phút
